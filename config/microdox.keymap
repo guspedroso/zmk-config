@@ -94,7 +94,7 @@
 
                 nav_layer {
 // ,-----------------------------.   ,-----------------------------.
-// | ESC |     |     |     |RESET|   |BTH 0|     |  UP |     | BSPC|
+// | ESC |     |     |     |     |   |BTH 0|     |  UP |     | BSPC|
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // | TAB |     |     |     |BOOTL|   |BTH 1| LEFT| DOWN|RIGHT|  '  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -103,7 +103,7 @@
 //             |     |     |     |   |     |     |     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp ESC  &trans &trans &trans &reset         &bt BT_SEL 0 &trans   &kp UP   &trans    &kp BSPC
+   &kp ESC  &trans &trans &trans &trans         &bt BT_SEL 0 &trans   &kp UP   &trans    &kp BSPC
    &kp TAB  &trans &trans &trans &bootloader    &bt BT_SEL 1 &kp LEFT &kp DOWN &kp RIGHT &kp APOS
    &kp CAPS &trans &trans &trans &trans         &bt BT_CLR   &trans   &trans   &trans    &kp BSLH
                    &trans &trans &trans         &trans       &trans   &trans
@@ -112,7 +112,7 @@
 
                 bth_layer {
 // ,-----------------------------.   ,-----------------------------.
-// | ESC |     |     |     |RESET|   |BTH 0|     |     |     | BSPC|
+// | ESC |     |     |     |     |   |BTH 0|     |     |     | BSPC|
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // | TAB |     |     |     |BOOTL|   |BTH 1|     |     |     |  '  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -121,7 +121,7 @@
 //             |     |     |     |   |     |     |     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp ESC  &trans &trans &trans &reset         &bt BT_SEL 0 &trans &trans &trans &kp BSPC
+   &kp ESC  &trans &trans &trans &trans         &bt BT_SEL 0 &trans &trans &trans &kp BSPC
    &kp TAB  &trans &trans &trans &bootloader    &bt BT_SEL 1 &trans &trans &trans &kp APOS
    &kp CAPS &trans &trans &trans &trans         &bt BT_CLR   &trans &trans &trans &kp BSLH
                    &trans &trans &trans         &trans       &trans &trans
