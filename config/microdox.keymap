@@ -25,9 +25,9 @@
                 bindings = <&kp>, <&kp>;
                 };
         };
+
         keymap {
                 compatible = "zmk,keymap";
-
                 default_layer {
 // 
 // ,-----------------------------.   ,-----------------------------.
@@ -37,7 +37,7 @@
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |SLEEP| ESC | SPC |   | ENT | BSPC|CTL `| 
+//             |SLEEP| SYM | SPC |   | ENT | NUM |CTL `| 
 //             `-----------------'   `-----------------'
 // holding options.
 // ,-----------------------------.   ,-----------------------------.
@@ -53,7 +53,7 @@
    &kp Q        &kp W      &kp E       &kp R            &kp T        &kp Y     &kp U            &kp I         &kp O       &kp P
    &hm LSHIFT A &hm LALT S &hm LGUI D  &lt NAV_LAY F    &kp G        &kp H     &lt BTH_LAY J    &hm RGUI K    &hm RCTRL L &hm RSHIFT SEMI
    &kp Z        &kp X      &kp C       &kp V            &kp B        &kp N     &kp M            &kp COMMA     &kp DOT     &kp FSLH
-                           &kp C_SLEEP &lt SYM_LAY ESC  &kp SPACE    &kp ENTER &lt NUM_LAY BSPC &kp RC(GRAVE)
+                           &kp C_SLEEP &mo SYM_LAY      &kp SPACE    &kp ENTER &mo NUM_LAY      &kp RC(GRAVE)
                         >;
                 };
 
@@ -98,18 +98,18 @@
                 nav_layer {
 // left index holding.                        
 // ,-----------------------------.   ,-----------------------------.
-// | ESC |     |     |     |     |   |     |     |  UP |     | BSPC|
+// | ESC |PSCRN|     |     |     |   |     |     |  UP |     | BSPC|
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // | TAB |BACK |FWRD |     |     |   |     | LEFT| DOWN|RIGHT|  '  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | CAPS|     |     |     |     |   |     |     |     |     |  \  |
+// | CAPS|LSGP|      |     |     |   |     |     |     |     |  \  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
 //             |     |     |     |   |     |     |     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp ESC  &trans        &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
-   &kp TAB  &kp LG(LBKT) &kp LG(RBKT) &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
-   &kp CAPS &trans        &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
+   &kp ESC  &PSCRN        &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
+   &kp TAB  &kp LG(LBKT)  &kp LG(RBKT)  &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
+   &kp CAPS &kp LSG(P)    &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
                           &trans        &trans &trans         &trans &trans   &trans
                         >;
                 };
