@@ -29,6 +29,7 @@
                 compatible = "zmk,keymap";
 
                 default_layer {
+// 
 // ,-----------------------------.   ,-----------------------------.
 // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -38,7 +39,7 @@
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
 //             |SLEEP| ESC | SPC |   | ENT | BSPC|CTL `| 
 //             `-----------------'   `-----------------'
-// Holding
+// holding options.
 // ,-----------------------------.   ,-----------------------------.
 // |     |     |     |     |     |   |     |     |     |     |     |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -57,6 +58,7 @@
                 };
 
                 sym_layer {
+// left thumb holding.                         
 // ,-----------------------------.   ,-----------------------------.
 // |  ~  |     |     |     |     |   |     |  _  |  +  |  {  |  }  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -75,8 +77,9 @@
                 };
 
                 num_layer {
+// right thumb holding.                        
 // ,-----------------------------.   ,-----------------------------.
-// |  `  |     |     |     |     |   |     |  -  |  =  |  [  |  ]  |
+// |  `  |BOOT |BTH 0|BTH 1|BTH C|   |     |  -  |  =  |  [  |  ]  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -85,32 +88,34 @@
 //             |     |     |     |   |     |     |     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp GRAVE &trans        &trans        &trans &trans    &trans &kp KP_MINUS &kp KP_EQUAL  &kp LBKT      &kp RBKT
-   &kp N1    &kp N2        &kp N3        &kp N4 &kp N5    &kp N6 &kp N7       &kp N8        &kp N9        &kp N0
-   &trans    &kp C_BRI_DEC &kp C_BRI_INC &trans &trans    &trans &trans       &trans        &trans        &trans
-                           &trans        &trans &trans    &trans &trans       &trans
+   &kp GRAVE &bootloader   &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_CLR        &trans &kp KP_MINUS &kp KP_EQUAL  &kp LBKT      &kp RBKT
+   &kp N1    &kp N2        &kp N3        &kp N4       &kp N5            &kp N6 &kp N7       &kp N8        &kp N9        &kp N0
+   &trans    &kp C_BRI_DEC &kp C_BRI_INC &trans       &trans            &trans &trans       &trans        &trans        &trans
+                           &trans        &trans       &trans            &trans &trans       &trans
                         >;
                 };
 
                 nav_layer {
+// left index holding.                        
 // ,-----------------------------.   ,-----------------------------.
 // | ESC |     |     |     |     |   |     |     |  UP |     | BSPC|
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | TAB |     |     |     |     |   |     | LEFT| DOWN|RIGHT|  '  |
+// | TAB |BACK |FWRD |     |     |   |     | LEFT| DOWN|RIGHT|  '  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
 //             |     |     |     |   |     |     |     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp ESC  &trans &trans &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
-   &kp TAB  &trans &trans &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
-   &kp CAPS &trans &trans &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
-                   &trans &trans &trans         &trans &trans   &trans
+   &kp ESC  &trans        &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
+   &kp TAB  &kp LG(LBKT) &kp LG(RBKT) &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
+   &kp CAPS &trans        &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
+                          &trans        &trans &trans         &trans &trans   &trans
                         >;
                 };
 
                 bth_layer {
+// right index holding.                        
 // ,-----------------------------.   ,-----------------------------.
 // | ESC |     |     |     |     |   |     |     |     |     | BSPC|
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
@@ -118,13 +123,13 @@
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |BOOT |     |     |   |BTH 0|BTH 1|BTH C|
+//             |     |     |     |   |     |     |     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp ESC  &trans &trans      &trans &trans         &trans     &trans       &trans       &trans &kp BSPC
-   &kp TAB  &trans &trans      &trans &trans         &trans     &trans       &trans       &trans &kp APOS
-   &kp CAPS &trans &trans      &trans &trans         &trans     &trans       &trans       &trans &kp BSLH
-                   &bootloader &trans &trans         &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_CLR
+   &kp ESC  &trans &trans &trans &trans    &trans &trans &trans &trans &kp BSPC
+   &kp TAB  &trans &trans &trans &trans    &trans &trans &trans &trans &kp APOS
+   &kp CAPS &trans &trans &trans &trans    &trans &trans &trans &trans &kp BSLH
+                   &trans &trans &trans    &trans &trans &trans
                         >;
                 };
         };
