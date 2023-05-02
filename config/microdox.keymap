@@ -139,18 +139,18 @@
                 mou_layer {
 // right thumb toggle.                        
 // ,-----------------------------.   ,-----------------------------.
-// | ESC |     |     |     |     |   |     |     |     |     | BSPC|
+// |     |     |     |     |     |   |     |     |     |     |     |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | TAB |     |     |     |     |   |     |     |     |     |  '  |
+// |     |     |     |     |     |   |     |     |     |     |     |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | CAPS|     |     |     |     |   |SCRUP|SCRDW|     |     |  \  |
+// |     |     |     |     |     |   |SCRUP|SCRDW|     |     |     |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
 //             |     |     |     |   |LCLIC|RCLIC|     |
 //             `-----------------'   `-----------------'
                         bindings = <
-   &kp ESC  &trans &trans &trans &trans    &trans         &trans           &trans &trans &kp BSPC
-   &kp TAB  &trans &trans &trans &trans    &trans         &trans           &trans &trans &kp APOS
-   &kp CAPS &trans &trans &trans &trans    &mwh SCROLL_UP &mwh SCROLL_DOWN &trans &trans &kp BSLH
+   &trans  &trans &trans &trans &trans    &trans         &trans           &trans &trans &trans
+   &trans  &trans &trans &trans &trans    &trans         &trans           &trans &trans &trans
+   &trans &trans &trans &trans &trans    &mwh SCROLL_UP &mwh SCROLL_DOWN &trans &trans &trans
                    &trans &trans &trans    &mkp LCLK      &mkp RCLK        &trans
                         >;
                 };
