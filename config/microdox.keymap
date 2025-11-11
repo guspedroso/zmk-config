@@ -129,13 +129,13 @@
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
 // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
 // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |     |     |     |   |     |     |     |
+//             |     |     |     |   |     |     |BOOTL|
 //             `-----------------'   `-----------------'
                         bindings = <
    &kp ESC  &trans       &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
    &kp TAB  &kp LG(LBKT) &kp LG(RBKT)  &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
    &kp CAPS &trans       &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
-                         &trans        &trans &trans         &trans &trans   &trans
+                         &trans        &trans &trans         &trans &trans   &bootloader
                         >;
                 };
 
