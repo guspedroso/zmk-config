@@ -2,7 +2,7 @@
 #include "microdox_base.dtsi"
 
 /* Attach transform to our physical layout */
-&microdox_layout {
+&microdox_layout0 {
     transform = <&microdox_transform>;
 };
 
