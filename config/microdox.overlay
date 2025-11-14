@@ -1,57 +1,32 @@
 / {
+    /* ============================================
+     * Physical Key Nodes (36 keys)
+     * ============================================ */
 
-    /* ===============================
-     * Physical Key Definitions
-     * =============================== */
+#define KEY(n) key_##n: key_##n { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
-    key_00: key_00 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_01: key_01 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_02: key_02 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_03: key_03 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_04: key_04 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    /* Row 0 (0–9) */
+    KEY(00); KEY(01); KEY(02); KEY(03); KEY(04);
+    KEY(05); KEY(06); KEY(07); KEY(08); KEY(09);
 
-    key_05: key_05 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_06: key_06 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_07: key_07 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_08: key_08 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_09: key_09 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    /* Row 1 (10–19) */
+    KEY(10); KEY(11); KEY(12); KEY(13); KEY(14);
+    KEY(15); KEY(16); KEY(17); KEY(18); KEY(19);
 
-    key_10: key_10 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_11: key_11 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_12: key_12 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_13: key_13 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_14: key_14 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    /* Row 2 (20–29) */
+    KEY(20); KEY(21); KEY(22); KEY(23); KEY(24);
+    KEY(25); KEY(26); KEY(27); KEY(28); KEY(29);
 
-    key_15: key_15 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_16: key_16 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_17: key_17 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_18: key_18 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_19: key_19 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    /* Thumbs (30–35) */
+    KEY(30); KEY(31); KEY(32);
+    KEY(33); KEY(34); KEY(35);
 
-    key_20: key_20 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_21: key_21 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_22: key_22 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_23: key_23 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_24: key_24 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-
-    key_25: key_25 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_26: key_26 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_27: key_27 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_28: key_28 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_29: key_29 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-
-    key_30: key_30 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_31: key_31 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_32: key_32 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-
-    key_33: key_33 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_34: key_34 { compatible = "zmk,physical-key"; #key-cells = <1>; };
-    key_35: key_35 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+#undef KEY
 
 
-    /* ===============================
-     * Physical Layout
-     * =============================== */
+    /* ============================================
+     * Physical Layout (10 / 10 / 10 / 6)
+     * ============================================ */
 
     physical_layout: physical_layout {
         compatible = "zmk,physical-layout";
@@ -59,45 +34,55 @@
         transform = <&microdox_transform>;
 
         keys = <
-            &key_00 0  &key_01 1  &key_02 2  &key_03 3  &key_04 4
-            &key_05 5  &key_06 6  &key_07 7  &key_08 8  &key_09 9
+            /* Row 0: Q W E R T | Y U I O P */
+            &key_00 0 &key_01 1 &key_02 2 &key_03 3 &key_04 4
+            &key_05 5 &key_06 6 &key_07 7 &key_08 8 &key_09 9
 
+            /* Row 1: A S D F G | H J K L ; */
             &key_10 10 &key_11 11 &key_12 12 &key_13 13 &key_14 14
             &key_15 15 &key_16 16 &key_17 17 &key_18 18 &key_19 19
 
+            /* Row 2: Z X C V B | N M , . / */
             &key_20 20 &key_21 21 &key_22 22 &key_23 23 &key_24 24
             &key_25 25 &key_26 26 &key_27 27 &key_28 28 &key_29 29
 
+            /* Row 3 (thumbs):
+               Left: CTL`, SYM, SPC
+               Right: ENTER, NUM, MOUSE
+            */
             &key_30 30 &key_31 31 &key_32 32
             &key_33 33 &key_34 34 &key_35 35
         >;
     };
 
 
-    /* ===============================
-     * Layout Transform
-     * =============================== */
+    /* ============================================
+     * Grid Transform (4 rows × 10 columns)
+     * ============================================ */
 
     microdox_transform: microdox_transform {
         compatible = "zmk,physical-layout-transform-grid";
 
         rows = <4>;
-        columns = <6>;
+        columns = <10>;  /* 5 left + 5 right */
 
         key-size-mm = <18>;
         key-spacing-mm = <19>;
 
+        /* Stagger between rows */
         row-offsets-mm = <
             0   /* row 0 */
             2   /* row 1 */
             4   /* row 2 */
-            12  /* row 3 */
+            12  /* thumb row */
         >;
 
+        /* No per-column stagger needed */
         column-offsets-mm = <
-            0 0 0 0 0 0
+            0 0 0 0 0  0 0 0 0 0
         >;
     };
+
 
     chosen {
         zmk,physical-layout = &physical_layout;
