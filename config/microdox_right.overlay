@@ -1,65 +1,83 @@
 / {
-    /* ============================================
-     *  Physical key nodes (required by Studio)
-     * ============================================ */
 
-#define KEY_NODE(id) \
-    key_##id: key_##id { \
-        compatible = "zmk,physical-key"; \
-        #key-cells = <1>; \
-    };
+    /* ===============================
+     * Physical Key Definitions
+     * =============================== */
 
-    /* 36 total keys */
-    KEY_NODE(00) KEY_NODE(01) KEY_NODE(02) KEY_NODE(03) KEY_NODE(04)
-    KEY_NODE(05) KEY_NODE(06) KEY_NODE(07) KEY_NODE(08) KEY_NODE(09)
+    key_00: key_00 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_01: key_01 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_02: key_02 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_03: key_03 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_04: key_04 { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
-    KEY_NODE(10) KEY_NODE(11) KEY_NODE(12) KEY_NODE(13) KEY_NODE(14)
-    KEY_NODE(15) KEY_NODE(16) KEY_NODE(17) KEY_NODE(18) KEY_NODE(19)
+    key_05: key_05 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_06: key_06 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_07: key_07 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_08: key_08 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_09: key_09 { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
-    KEY_NODE(20) KEY_NODE(21) KEY_NODE(22) KEY_NODE(23) KEY_NODE(24)
-    KEY_NODE(25) KEY_NODE(26) KEY_NODE(27) KEY_NODE(28) KEY_NODE(29)
+    key_10: key_10 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_11: key_11 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_12: key_12 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_13: key_13 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_14: key_14 { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
-    /* Thumbs left (row 3) */
-    KEY_NODE(30) KEY_NODE(31) KEY_NODE(32)
+    key_15: key_15 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_16: key_16 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_17: key_17 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_18: key_18 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_19: key_19 { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
-    /* Thumbs right (row 3) */
-    KEY_NODE(33) KEY_NODE(34) KEY_NODE(35)
+    key_20: key_20 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_21: key_21 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_22: key_22 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_23: key_23 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_24: key_24 { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
-#undef KEY_NODE
+    key_25: key_25 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_26: key_26 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_27: key_27 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_28: key_28 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_29: key_29 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+
+    key_30: key_30 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_31: key_31 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_32: key_32 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+
+    key_33: key_33 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_34: key_34 { compatible = "zmk,physical-key"; #key-cells = <1>; };
+    key_35: key_35 { compatible = "zmk,physical-key"; #key-cells = <1>; };
 
 
-    /* ============================================
-     *  Physical Layout (with correct ordering)
-     * ============================================ */
+    /* ===============================
+     * Physical Layout
+     * =============================== */
+
     physical_layout: physical_layout {
         compatible = "zmk,physical-layout";
         display-name = "Microdox 36";
         transform = <&microdox_transform>;
 
         keys = <
-            /* Row 0: Q W E R T  |  Y U I O P */
             &key_00 0  &key_01 1  &key_02 2  &key_03 3  &key_04 4
             &key_05 5  &key_06 6  &key_07 7  &key_08 8  &key_09 9
 
-            /* Row 1: A S D F G  |  H J K L ; */
             &key_10 10 &key_11 11 &key_12 12 &key_13 13 &key_14 14
             &key_15 15 &key_16 16 &key_17 17 &key_18 18 &key_19 19
 
-            /* Row 2: Z X C V B  |  N M , . / */
             &key_20 20 &key_21 21 &key_22 22 &key_23 23 &key_24 24
             &key_25 25 &key_26 26 &key_27 27 &key_28 28 &key_29 29
 
-            /* Row 3: Left Thumbs | Right Thumbs */
-            /* CTL`, SYM, SPC     | ENTER, NUM, MOUSE */
             &key_30 30 &key_31 31 &key_32 32
             &key_33 33 &key_34 34 &key_35 35
         >;
     };
 
 
-    /* ============================================
-     *  Transform (4 rows × 6 columns each side)
-     * ============================================ */
+    /* ===============================
+     * Layout Transform
+     * =============================== */
+
     microdox_transform: microdox_transform {
         compatible = "zmk,physical-layout-transform-grid";
 
@@ -69,20 +87,17 @@
         key-size-mm = <18>;
         key-spacing-mm = <19>;
 
-        /* Slight stagger: row 1 → +2mm, row 2 → +4mm, row 3 → +12mm */
         row-offsets-mm = <
             0   /* row 0 */
             2   /* row 1 */
             4   /* row 2 */
-            12  /* row 3 (thumbs) */
+            12  /* row 3 */
         >;
 
-        /* Column offsets (no special stagger needed) */
         column-offsets-mm = <
             0 0 0 0 0 0
         >;
     };
-
 
     chosen {
         zmk,physical-layout = &physical_layout;
