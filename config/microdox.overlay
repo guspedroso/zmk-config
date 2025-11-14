@@ -1,118 +1,50 @@
+#include <physical_layouts.dtsi>
+
 / {
-
-    /* ===============================
-     * Physical Key Nodes (36 keys)
-     * =============================== */
-
-#define KEY(n) \
-    key_##n: key_##n { \
-        compatible = "zmk,physical-key"; \
-        #key-cells = <1>; \
-    }
-
-    /* Row 0 */
-    KEY(00);
-    KEY(01);
-    KEY(02);
-    KEY(03);
-    KEY(04);
-    KEY(05);
-    KEY(06);
-    KEY(07);
-    KEY(08);
-    KEY(09);
-
-    /* Row 1 */
-    KEY(10);
-    KEY(11);
-    KEY(12);
-    KEY(13);
-    KEY(14);
-    KEY(15);
-    KEY(16);
-    KEY(17);
-    KEY(18);
-    KEY(19);
-
-    /* Row 2 */
-    KEY(20);
-    KEY(21);
-    KEY(22);
-    KEY(23);
-    KEY(24);
-    KEY(25);
-    KEY(26);
-    KEY(27);
-    KEY(28);
-    KEY(29);
-
-    /* Thumbs */
-    KEY(30);
-    KEY(31);
-    KEY(32);
-    KEY(33);
-    KEY(34);
-    KEY(35);
-
-#undef KEY
-
-
-    /* ===============================
-     * Physical Layout
-     * =============================== */
-
-    physical_layout: physical_layout {
+    physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
-        display-name = "Microdox 36";
+        display-name = "5 Column";
 
-        transform = <&microdox_transform>;
+        kscan = <&kscan0>;
+        transform = <&matrix_transform0>;
 
-        keys = <
-            /* Row 0 */
-            &key_00 0 &key_01 1 &key_02 2 &key_03 3 &key_04 4
-            &key_05 5 &key_06 6 &key_07 7 &key_08 8 &key_09 9
-
-            /* Row 1 */
-            &key_10 10 &key_11 11 &key_12 12 &key_13 13 &key_14 14
-            &key_15 15 &key_16 16 &key_17 17 &key_18 18 &key_19 19
-
-            /* Row 2 */
-            &key_20 20 &key_21 21 &key_22 22 &key_23 23 &key_24 24
-            &key_25 25 &key_26 26 &key_27 27 &key_28 28 &key_29 29
-
-            /* Row 3 (thumbs) */
-            &key_30 30 &key_31 31 &key_32 32
-            &key_33 33 &key_34 34 &key_35 35
-        >;
-    };
-
-
-    /* ===============================
-     * Layout Transform
-     * =============================== */
-    microdox_transform: microdox_transform {
-        compatible = "zmk,physical-layout-transform-grid";
-
-        rows = <4>;
-        columns = <6>;
-
-        key-size-mm = <18>;
-        key-spacing-mm = <19>;
-
-        row-offsets-mm = <
-            0
-            2
-            4
-            12
-        >;
-
-        column-offsets-mm = <
-            0 0 0 0 0 0
-        >;
-    };
-
-
-    chosen {
-        zmk,physical-layout = &physical_layout;
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100    0   37       0     0     0>
+            , <&key_physical_attrs 100 100  100   12       0     0     0>
+            , <&key_physical_attrs 100 100  200    0       0     0     0>
+            , <&key_physical_attrs 100 100  300   12       0     0     0>
+            , <&key_physical_attrs 100 100  400   24       0     0     0>
+            , <&key_physical_attrs 100 100  700   24       0     0     0>
+            , <&key_physical_attrs 100 100  800   12       0     0     0>
+            , <&key_physical_attrs 100 100  900    0       0     0     0>
+            , <&key_physical_attrs 100 100 1000   12       0     0     0>
+            , <&key_physical_attrs 100 100 1100   37       0     0     0>
+            , <&key_physical_attrs 100 100    0  137       0     0     0>
+            , <&key_physical_attrs 100 100  100  112       0     0     0>
+            , <&key_physical_attrs 100 100  200  100       0     0     0>
+            , <&key_physical_attrs 100 100  300  112       0     0     0>
+            , <&key_physical_attrs 100 100  400  124       0     0     0>
+            , <&key_physical_attrs 100 100  700  124       0     0     0>
+            , <&key_physical_attrs 100 100  800  112       0     0     0>
+            , <&key_physical_attrs 100 100  900  100       0     0     0>
+            , <&key_physical_attrs 100 100 1000  112       0     0     0>
+            , <&key_physical_attrs 100 100 1100  137       0     0     0>
+            , <&key_physical_attrs 100 100    0  237       0     0     0>
+            , <&key_physical_attrs 100 100  100  212       0     0     0>
+            , <&key_physical_attrs 100 100  200  200       0     0     0>
+            , <&key_physical_attrs 100 100  300  212       0     0     0>
+            , <&key_physical_attrs 100 100  400  224       0     0     0>
+            , <&key_physical_attrs 100 100  700  224       0     0     0>
+            , <&key_physical_attrs 100 100  800  212       0     0     0>
+            , <&key_physical_attrs 100 100  900  200       0     0     0>
+            , <&key_physical_attrs 100 100 1000  212       0     0     0>
+            , <&key_physical_attrs 100 100 1100  237       0     0     0>
+            , <&key_physical_attrs 100 100  250  312       0     0     0>
+            , <&key_physical_attrs 100 100  350  312    1200   350   412>
+            , <&key_physical_attrs 100 150  448  283    2400   448   433>
+            , <&key_physical_attrs 100 150  652  283 (-2400)   752   433>
+            , <&key_physical_attrs 100 100  750  312 (-1200)   850   412>
+            , <&key_physical_attrs 100 100  850  312       0     0     0>
+            ;
     };
 };
