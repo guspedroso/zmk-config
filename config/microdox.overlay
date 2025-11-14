@@ -1,57 +1,65 @@
 / {
     /* ----------------------------------------------------------
-     *  PHANDLE KEY NODES (36 keys)
+     *  KEY PHANDLE NODES — must include compatible + #key-cells
      * ---------------------------------------------------------- */
 
-    key_00: key_00 { #key-cells = <1>; };
-    key_01: key_01 { #key-cells = <1>; };
-    key_02: key_02 { #key-cells = <1>; };
-    key_03: key_03 { #key-cells = <1>; };
-    key_04: key_04 { #key-cells = <1>; };
+#define KEY_NODE(id) \
+    key_##id: key_##id { \
+        compatible = "zmk,physical-key"; \
+        #key-cells = <1>; \
+    };
 
-    key_05: key_05 { #key-cells = <1>; };
-    key_06: key_06 { #key-cells = <1>; };
-    key_07: key_07 { #key-cells = <1>; };
-    key_08: key_08 { #key-cells = <1>; };
-    key_09: key_09 { #key-cells = <1>; };
+    KEY_NODE(00)
+    KEY_NODE(01)
+    KEY_NODE(02)
+    KEY_NODE(03)
+    KEY_NODE(04)
 
-    key_10: key_10 { #key-cells = <1>; };
-    key_11: key_11 { #key-cells = <1>; };
-    key_12: key_12 { #key-cells = <1>; };
-    key_13: key_13 { #key-cells = <1>; };
-    key_14: key_14 { #key-cells = <1>; };
+    KEY_NODE(05)
+    KEY_NODE(06)
+    KEY_NODE(07)
+    KEY_NODE(08)
+    KEY_NODE(09)
 
-    key_15: key_15 { #key-cells = <1>; };
-    key_16: key_16 { #key-cells = <1>; };
-    key_17: key_17 { #key-cells = <1>; };
-    key_18: key_18 { #key-cells = <1>; };
-    key_19: key_19 { #key-cells = <1>; };
+    KEY_NODE(10)
+    KEY_NODE(11)
+    KEY_NODE(12)
+    KEY_NODE(13)
+    KEY_NODE(14)
 
-    key_20: key_20 { #key-cells = <1>; };
-    key_21: key_21 { #key-cells = <1>; };
-    key_22: key_22 { #key-cells = <1>; };
-    key_23: key_23 { #key-cells = <1>; };
-    key_24: key_24 { #key-cells = <1>; };
+    KEY_NODE(15)
+    KEY_NODE(16)
+    KEY_NODE(17)
+    KEY_NODE(18)
+    KEY_NODE(19)
 
-    key_25: key_25 { #key-cells = <1>; };
-    key_26: key_26 { #key-cells = <1>; };
-    key_27: key_27 { #key-cells = <1>; };
-    key_28: key_28 { #key-cells = <1>; };
-    key_29: key_29 { #key-cells = <1>; };
+    KEY_NODE(20)
+    KEY_NODE(21)
+    KEY_NODE(22)
+    KEY_NODE(23)
+    KEY_NODE(24)
 
-    /* Left thumbs under C–V–B */
-    key_30: key_30 { #key-cells = <1>; };
-    key_31: key_31 { #key-cells = <1>; };
-    key_32: key_32 { #key-cells = <1>; };
+    KEY_NODE(25)
+    KEY_NODE(26)
+    KEY_NODE(27)
+    KEY_NODE(28)
+    KEY_NODE(29)
 
-    /* Right thumbs under N–M–, */
-    key_33: key_33 { #key-cells = <1>; };
-    key_34: key_34 { #key-cells = <1>; };
-    key_35: key_35 { #key-cells = <1>; };
+    /* Left thumbs C–V–B */
+    KEY_NODE(30)
+    KEY_NODE(31)
+    KEY_NODE(32)
+
+    /* Right thumbs N–M–, */
+    KEY_NODE(33)
+    KEY_NODE(34)
+    KEY_NODE(35)
+
+#undef KEY_NODE
 
 
     /* ----------------------------------------------------------
-     *  PHYSICAL LAYOUT FOR ZMK STUDIO
+     *  PHYSICAL LAYOUT for ZMK Studio
      * ---------------------------------------------------------- */
 
     physical_layout: physical_layout {
@@ -61,8 +69,8 @@
 
         keys = <
             /* Row 0 */
-            &key_00 0  &key_01 1  &key_02 2  &key_03 3  &key_04 4
-            &key_05 5  &key_06 6  &key_07 7  &key_08 8  &key_09 9
+            &key_00 0 &key_01 1 &key_02 2 &key_03 3 &key_04 4
+            &key_05 5 &key_06 6 &key_07 7 &key_08 8 &key_09 9
 
             /* Row 1 */
             &key_10 10 &key_11 11 &key_12 12 &key_13 13 &key_14 14
@@ -72,17 +80,15 @@
             &key_20 20 &key_21 21 &key_22 22 &key_23 23 &key_24 24
             &key_25 25 &key_26 26 &key_27 27 &key_28 28 &key_29 29
 
-            /* Row 3: thumbs */
-            /* Left half thumbs (C V B) */
+            /* Row 3 (thumbs) */
             &key_30 30 &key_31 31 &key_32 32
-
-            /* Right half thumbs (N M ,) */
             &key_33 33 &key_34 34 &key_35 35
         >;
     };
 
+
     /* ----------------------------------------------------------
-     *  TRANSFORM — realistic shape (mirrored thumbs)
+     *  TRANSFORM — realistic geometry (mirrored thumbs)
      * ---------------------------------------------------------- */
 
     microdox_transform: microdox_transform {
@@ -94,20 +100,20 @@
         key-size-mm = <18>;
         key-spacing-mm = <19>;
 
-        /* Row offsets for stagger + thumb drop */
         row-offsets-mm = <
             0   /* row 0 */
-            3   /* row 1 stagger */
-            6   /* row 2 stagger */
-            25  /* thumb row is much lower */
+            3   /* row 1 (slight stagger) */
+            6   /* row 2 */
+            25  /* thumb row is lower */
         >;
 
-        /* Column offsets (thumbs mirrored) */
+        /* Column offsets — no extra offset needed */
         column-offsets-mm = <
-            0 0 0 0 0   /* left half */
-            0 0 0 0 0   /* right half */
+            0 0 0 0 0
+            0 0 0 0 0
         >;
     };
+
 
     chosen {
         zmk,physical-layout = &physical_layout;
