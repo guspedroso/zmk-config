@@ -1,1 +1,7 @@
-#include "microdox.dtsi"
+#include "microdox_layouts.dtsi"
+
+/ {
+    chosen {
+        zmk,physical-layout = &microdox_layout0;
+    };
+};
