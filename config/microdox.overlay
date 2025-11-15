@@ -1,4 +1,9 @@
+#include <dt-bindings/zmk/matrix_transform.h>
 #include "microdox_layouts.dtsi"
+
+&microdox_layout0 {
+    transform = <&default_transform>;
+};
 
 / {
     chosen {
