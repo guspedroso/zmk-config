@@ -1,7 +1,7 @@
 manifest:
   remotes:
     - name: guspedroso
-      url-base: https://github.com/guspedroso/zmk
+      url-base: https://github.com/guspedroso
   projects:
     - name: zmk
       remote: guspedroso
