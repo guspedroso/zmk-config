@@ -20,12 +20,14 @@
         compatible = "zmk,combos";
         combo_esc {
             timeout-ms = <120>;
+            slow-release;
             key-positions = <12 13>;
             bindings = <&mo NAV_LAY>;
         };
 
         combo_bspc {
             timeout-ms = <120>;
+            slow-release;
             key-positions = <16 17>;
             bindings = <&mo BTH_LAY>;
         };
