@@ -19,13 +19,13 @@
     combos {
         compatible = "zmk,combos";
         combo_esc {
-            timeout-ms = <50>;
+            timeout-ms = <120>;
             key-positions = <12 13>;
             bindings = <&mo NAV_LAY>;
         };
 
         combo_bspc {
-            timeout-ms = <50>;
+            timeout-ms = <120>;
             key-positions = <16 17>;
             bindings = <&mo BTH_LAY>;
         };
