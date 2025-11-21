@@ -16,182 +16,198 @@
 #define MOU_LAY 5
 
 / {
-    combos {
-        compatible = "zmk,combos";
-        combo_esc {
-            timeout-ms = <120>;
-            slow-release;
-            key-positions = <13 14>;
-            bindings = <&mo NAV_LAY>;
-        };
+  combos {
+    compatible = "zmk,combos";
 
-        combo_bspc {
-            timeout-ms = <120>;
-            slow-release;
-            key-positions = <15 16>;
-            bindings = <&mo BTH_LAY>;
-        };
+    combo_esc {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <0 1>;
+      bindings = <&kp ESC>;
     };
+
+    combo_bspc {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <8 9>;
+      bindings = <&kp BSPC>;
+    };
+
+    combo_screenshot {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <25 26>;
+      bindings = <&screenshot>;
+    };
+  };
 };
 
 / {
-        behaviors {
+  behaviors {
 
-                hm: homerow_mods {
-                compatible = "zmk,behavior-hold-tap";
-                label = "HOMEROW_MODS";
-                #binding-cells = <2>;
-                tapping-term-ms = <150>;
-                quick_tap_ms = <0>;
-                flavor = "tap-preferred";
-                bindings = <&kp>, <&kp>;
-                };
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick_tap_ms = <0>;
+      flavor = "balanced";
+      bindings = <&kp>, <&kp>;
+    };
 
-                fm: finger_mods {
-                compatible = "zmk,behavior-hold-tap";
-                label = "FINGER_MODS";
-                #binding-cells = <2>;
-                tapping-term-ms = <200>;
-                quick_tap_ms = <0>;
-                flavor = "balanced";
-                bindings = <&mo>, <&kp>;
-                };
-        };
+    fm: finger_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "FINGER_MODS";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick_tap_ms = <0>;
+      flavor = "balanced";
+      bindings = <&mo>, <&kp>;
+    };
 
-        keymap {
-                compatible = "zmk,keymap";
-                default_layer {
-//
-// ,-----------------------------.   ,-----------------------------.
-// |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |CTL `| SYM | SPC |   | ENT | NUM |MOUSE|
-//             `-----------------'   `-----------------'
-// holding options.
-// ,-----------------------------.   ,-----------------------------.
-// |     |     |     |     |     |   |     |     |     |     |     |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |SHIFT| ALT | GUI | NAV |     |   |     | BTH | GUI | CTRL|SHIFT|
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |     |     |     |     |     |   |     |     |     |     |     |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |     | SYM |     |   |     | NUM |     |
-//             `-----------------'   `-----------------'
-                        bindings = <
-   &kp Q        &kp W      &kp E                 &kp R            &kp T                &kp Y     &kp U            &kp I         &kp O       &kp P
-   &hm LSHIFT A &hm LALT S &hm LGUI D            &fm NAV_LAY F            &kp G                &kp H     &fm BTH_LAY J            &hm RGUI K    &hm RCTRL L &hm RSHIFT SEMI
-   &kp Z        &kp X      &kp C                 &kp V            &kp B                &kp N     &kp M            &kp COMMA     &kp DOT     &kp FSLH
-                           &lt MOU_LAY RC(GRAVE) &mo SYM_LAY      &kp SPACE            &kp ENTER &mo NUM_LAY      &tog MOU_LAY
-                        >;
-                };
+    screenshot: screenshot_combo {
+      compatible = "zmk,behavior-mod-morph";
+      label = "SSHOT";
+      #binding-cells = <0>;
+      mods = <(MOD_LGUI | MOD_LSHIFT)>;
+      bindings = <&kp N4>;
+    };
+  };
 
-                sym_layer {
-// left thumb holding.
-// ,-----------------------------.   ,-----------------------------.
-// |  ~  |     |     |     |     |   |     |  _  |  +  |  {  |  }  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |     |     |     |     |     |   |     | NEXT| VOL-| VOL+| PLAY|
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |     |     |     |   |     |     |     |
-//             `-----------------'   `-----------------'
-                        bindings = <
-   &kp TILDE &trans &trans   &trans   &trans               &trans    &kp UNDER  &kp KP_PLUS     &kp LBRC     &kp RBRC
-   &kp EXCL  &kp AT &kp HASH &kp DLLR &kp PRCNT            &kp CARET &kp AMPS   &kp KP_MULTIPLY &kp LPAR     &kp RPAR
-   &trans    &trans &trans   &trans   &trans               &trans    &kp C_NEXT &kp C_VOL_DN    &kp C_VOL_UP &kp C_PLAY_PAUSE
-                    &trans   &trans   &trans               &trans    &trans     &trans
-                        >;
-                };
+  keymap {
+    compatible = "zmk,keymap";
 
-                num_layer {
-// right thumb holding.
-// ,-----------------------------.   ,-----------------------------.
-// |  `  |     |     |     |     |   |     |  -  |  =  |  [  |  ]  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |SLEEP|BRIG-|BRIG+|     |     |   |     |     |     |     |     |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |     |     |     |   |     |     |     |
-//             `-----------------'   `-----------------'
-                        bindings = <
-   &kp GRAVE   &trans        &trans        &trans       &trans            &trans &kp MINUS    &kp KP_EQUAL  &kp LBKT      &kp RBKT
-   &kp N1      &kp N2        &kp N3        &kp N4       &kp N5            &kp N6 &kp N7       &kp N8        &kp N9        &kp N0
-   &kp C_SLEEP &kp C_BRI_DEC &kp C_BRI_INC &trans       &trans            &trans &trans       &trans        &trans        &trans
-                             &trans        &trans       &trans            &trans &trans       &trans
-                        >;
-                };
+    default_layer {
+      //
+      // ,-----------------------------.   ,-----------------------------.
+      // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |CTL `| SYM | SPC |   | ENT | NUM |MOUSE|
+      //             `-----------------'   `-----------------'
+      //
+      // holding options.
+      // ,-----------------------------.   ,-----------------------------.
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |SHIFT| ALT | GUI | NAV |     |   |     | BTH | GUI | CTRL|SHIFT|
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |     | SYM |     |   |     | NUM |     |
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &kp Q        &kp W      &kp E                 &kp R            &kp T                &kp Y     &kp U            &kp I         &kp O       &kp P
+        &hm LSHIFT A &hm LALT S &hm LGUI D            &fm NAV_LAY F    &kp G                &kp H     &fm BTH_LAY J    &hm RGUI K    &hm RCTRL L &hm RSHIFT SEMI
+        &kp Z        &kp X      &kp C                 &kp V            &kp B                &kp N     &kp M            &kp COMMA     &kp DOT     &kp FSLH
+                                &lt MOU_LAY RC(GRAVE) &mo SYM_LAY      &kp SPACE            &kp ENTER &mo NUM_LAY      &tog MOU_LAY
+      >;
+    };
 
-                nav_layer {
-// left index holding.
-// ,-----------------------------.   ,-----------------------------.
-// | ESC |     |     |     |     |   |     |     |  UP |     | BSPC|
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | TAB |BACK |FWRD |     |     |   |     | LEFT| DOWN|RIGHT|  '  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | CAPS|     |     |     |     |   |     |     |     |     |  \  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |     |     |     |   |     |     |BOOTL|
-//             `-----------------'   `-----------------'
-                        bindings = <
-   &kp ESC  &trans       &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
-   &kp TAB  &kp LG(LBKT) &kp LG(RBKT)  &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
-   &kp CAPS &trans       &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
-                         &trans        &trans &trans         &trans &trans   &bootloader
-                        >;
-                };
+    sym_layer {
+      // left thumb holding.
+      // ,-----------------------------.   ,-----------------------------.
+      // |  ~  |     |     |     |     |   |     |  _  |  +  |  {  |  }  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |     |     |     |     |     |   |     | NEXT| VOL-| VOL+| PLAY|
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |     |     |     |   |     |     |     |
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &kp TILDE &trans &trans   &trans   &trans               &trans    &kp UNDER  &kp PLUS         &kp LBRC     &kp RBRC
+        &kp EXCL  &kp AT &kp HASH &kp DLLR &kp PRCNT            &kp CARET &kp AMPS   &kp KP_MULTIPLY &kp LPAR     &kp RPAR
+        &trans    &trans &trans   &trans   &trans               &trans    &kp C_NEXT &kp C_VOL_DN     &kp C_VOL_UP &kp C_PLAY_PAUSE
+                         &trans   &trans   &trans               &trans    &trans     &trans
+      >;
+    };
 
-                bth_layer {
-// right index holding.
-// ,-----------------------------.   ,-----------------------------.
-// | ESC |     |     |     |     |   |     |     |     |     | BSPC|
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | TAB |     |     |     |     |   |     |     |     |     |  '  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// | CAPS|     |     |     |     |   |     |     |     |     |  \  |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |BOOTL|STUDU|     |   |BTH 0|BTH 1|BTH C|
-//             `-----------------'   `-----------------'
-                        bindings = <
-   &kp ESC  &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp BSPC
-   &kp TAB  &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp APOS
-   &kp CAPS &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp BSLH
-                   &bootloader &studio_unlock &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_CLR
-                        >;
-                };
+    num_layer {
+      // right thumb holding.
+      // ,-----------------------------.   ,-----------------------------.
+      // |  `  |     |     |     |     |   |     |  -  |  =  |  [  |  ]  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |SLEEP|BRIG-|BRIG+|     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |     |     |     |   |     |     |     |
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &kp GRAVE   &trans        &trans        &trans       &trans            &trans &kp MINUS    &kp KP_EQUAL  &kp LBKT      &kp RBKT
+        &kp N1      &kp N2        &kp N3        &kp N4       &kp N5            &kp N6 &kp N7       &kp N8        &kp N9        &kp N0
+        &kp C_SLEEP &kp C_BRI_DEC &kp C_BRI_INC &trans       &trans            &trans &trans       &trans        &trans        &trans
+                                  &trans        &trans       &trans            &trans &trans       &trans
+      >;
+    };
 
-                mou_layer {
-// right thumb toggle.
-// ,-----------------------------.   ,-----------------------------.
-// |     |     |     |     |     |   |     |     |     |     |     |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |     |     |     |     |     |   |     |     |     |     |     |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-// |     |     |     |     |     |   |SCRUP|SCRDW|     |     |     |
-// |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-//             |     |     |     |   |LCLIC|RCLIC|     |
-//             `-----------------'   `-----------------'
-                        bindings = <
-   &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-   &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-   &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-                 &trans &trans &trans    &trans &trans &trans
-//    &trans &trans &trans &trans &trans    &mwh SCROLL_UP &mwh SCROLL_DOWN &trans &trans &trans
-//                    &trans &trans &trans    &mkp LCLK      &mkp RCLK        &trans
-                        >;
-                };
+    nav_layer {
+      // left index holding.
+      // ,-----------------------------.   ,-----------------------------.
+      // | ESC |     |     |     |     |   |     |     |  UP |     | BSPC|
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // | TAB |BACK |FWRD |     |     |   |     | LEFT| DOWN|RIGHT|  '  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |     |     |     |   |     |     |BOOTL|
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &kp ESC  &trans       &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
+        &kp TAB  &kp LG(LBKT) &kp LG(RBKT)  &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
+        &kp CAPS &trans       &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
+                              &trans        &trans &trans         &trans &trans   &bootloader
+      >;
+    };
 
-                extra1 {
-                        status = "reserved";
-                };
+    bth_layer {
+      // right index holding.
+      // ,-----------------------------.   ,-----------------------------.
+      // | ESC |     |     |     |     |   |     |     |     |     | BSPC|
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // | TAB |     |     |     |     |   |     |     |     |     |  '  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |BOOTL|STUDU|     |   |BTH 0|BTH 1|BTH C|
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &kp ESC  &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp BSPC
+        &kp TAB  &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp APOS
+        &kp CAPS &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp BSLH
+                        &bootloader &studio_unlock &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_CLR
+      >;
+    };
 
-                extra2 {
-                        status = "reserved";
-                };
-        };
+    mou_layer {
+      // right thumb toggle.
+      // ,-----------------------------.   ,-----------------------------.
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |     |     |     |     |     |   |SCRUP|SCRDW|     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |     |     |     |   |LCLIC|RCLIC|     |
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+                      &trans &trans &trans    &trans &trans &trans
+      >;
+    };
+
+    extra1 {
+      status = "reserved";
+    };
+
+    extra2 {
+      status = "reserved";
+    };
+  };
 };
