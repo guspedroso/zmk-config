@@ -19,20 +19,6 @@
   combos {
     compatible = "zmk,combos";
 
-    combo_esc {
-      timeout-ms = <120>;
-      slow-release;
-      key-positions = <0 1>;
-      bindings = <&kp ESC>;
-    };
-
-    combo_bspc {
-      timeout-ms = <120>;
-      slow-release;
-      key-positions = <8 9>;
-      bindings = <&kp BSPC>;
-    };
-
     combo_undo {
       timeout-ms = <120>;
       slow-release;
