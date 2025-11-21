@@ -39,6 +39,21 @@
       key-positions = <25 26>;
       bindings = <&screenshot>;
     };
+
+    combo_copy {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <21 22>;
+      bindings = <&copy_action>;
+    };
+
+    combo_paste {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <22 23>;
+      bindings = <&paste_action>;
+    };
+
   };
 };
 
@@ -71,6 +86,21 @@
       #binding-cells = <0>;
       mods = <(MOD_LGUI | MOD_LSHIFT)>;
       bindings = <&kp N4>;
+    };
+    copy_action: copy_behavior {
+      compatible = "zmk,behavior-mod-morph";
+      label = "COPY";
+      #binding-cells = <0>;
+      mods = <MOD_LGUI>;
+      bindings = <&kp C>;
+    };
+
+    paste_action: paste_behavior {
+      compatible = "zmk,behavior-mod-morph";
+      label = "PASTE";
+      #binding-cells = <0>;
+      mods = <MOD_LGUI>;
+      bindings = <&kp V>;
     };
   };
 
