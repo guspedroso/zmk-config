@@ -84,7 +84,7 @@
       compatible = "zmk,behavior-mod-morph";
       label = "SSHOT";
       #binding-cells = <0>;
-      mods = <(MOD_LGUI | MOD_LSHIFT)>;
+      mods = <MOD_LGUI>, <MOD_LSHIFT>;
       bindings = <&kp N4>;
     };
     copy_action: copy_behavior {
