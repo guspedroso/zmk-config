@@ -80,13 +80,13 @@
       bindings = <&mo>, <&kp>;
     };
 
-    screenshot: screenshot_combo {
-      compatible = "zmk,behavior-mod-morph";
+    screenshot: screenshot_macro {
+      compatible = "zmk,behavior-macro";
       label = "SSHOT";
       #binding-cells = <0>;
-      mods = <MOD_LGUI>, <MOD_LSHIFT>;
-      bindings = <&kp N4>;
+      bindings = <&kp LGUI &kp LSHIFT &kp N4>;
     };
+
     copy_action: copy_behavior {
       compatible = "zmk,behavior-mod-morph";
       label = "COPY";
