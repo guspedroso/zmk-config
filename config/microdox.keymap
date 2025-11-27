@@ -188,13 +188,13 @@
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
       // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-      //             |BOOTL|STUDU|     |   |BTH 0|BTH 1|BTH C|
-      //             `-----------------'   `-----------------'
+      //             |BOOTL|STUDU|     |   |BT PREV|BT NEXT|BT CLR|
+      //             `-----------------'   `-----------------------'
       bindings = <
         &kp ESC  &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp BSPC
         &kp TAB  &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp APOS
         &kp CAPS &trans &trans      &trans         &trans    &trans       &trans       &trans     &trans &kp BSLH
-                        &bootloader &studio_unlock &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_CLR
+                        &bootloader &studio_unlock &trans    &bt BT_PRV  &bt BT_NXT &bt BT_CLR
       >;
     };
 
