@@ -60,6 +60,13 @@
       key-positions = <28 29>;
       bindings = <&mkp RCLK>;
     };
+
+    combo_leftclick {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <31 32>;
+      bindings = <&mkp LCLK>;
+    };
   };
 };
 
@@ -84,6 +91,16 @@
       flavor = "balanced";
       bindings = <&mo>, <&kp>;
     };
+
+    drag_ht: drag_ht {
+      compatible = "zmk,behavior-hold-tap";
+      label = "DRAG_HT";
+      #binding-cells = <2>;
+      tapping-term-ms = <180>;
+      flavor = "tap-preferred";
+      bindings = <&mkp LCLK>, <&mkp LCLK>;
+    };
+  };
   };
 
   keymap {
@@ -119,7 +136,7 @@
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
       // |    UNDO COPY  PASTE TERM    |   | SCREENSHOT|     |    RCLK   |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-      //             |     |     |     |   |     |     |     |
+      //             |     |   LCLK    |   |     |     |     |
       //             `-----------------'   `-----------------'
       bindings = <
         &kp Q        &kp W      &kp E      &kp R            &kp T                &kp Y     &kp U            &kp I         &kp O       &kp P
@@ -176,13 +193,13 @@
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
       // | CAPS|     |     |     |     |   |     |     |     |     |  \  |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
-      //             |     |     |     |   |     |     |     |
+      //             |     |     |LCLK |   |     |     |     |
       //             `-----------------'   `-----------------'
       bindings = <
         &kp ESC  &trans       &trans        &trans &trans         &trans &trans   &kp UP   &trans    &kp BSPC
         &kp TAB  &kp LG(LBKT) &kp LG(RBKT)  &trans &trans         &trans &kp LEFT &kp DOWN &kp RIGHT &kp APOS
         &kp CAPS &trans       &trans        &trans &trans         &trans &trans   &trans   &trans    &kp BSLH
-                              &trans        &trans &trans         &trans &trans   &trans
+                              &trans        &trans &drag_ht 0 0     &trans &trans   &trans
       >;
     };
 
