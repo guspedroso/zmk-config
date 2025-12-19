@@ -7,7 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-// #include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/mouse.h>
 
 #define SYM_LAY 1
 #define NUM_LAY 2
@@ -52,6 +52,13 @@
       slow-release;
       key-positions = <25 26>;
       bindings = <&kp LG(LS(N4))>;
+    };
+
+    combo_rightclick {
+      timeout-ms = <120>;
+      slow-release;
+      key-positions = <28 29>;
+      bindings = <&mkp RCLK>;
     };
   };
 };
@@ -100,7 +107,7 @@
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
       // |SHIFT| ALT | GUI | NAV |     |   |     | BTH | GUI | CTRL|SHIFT|
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |     |     |     |     |     |   |     |     |     |     | MOU |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
       //             |     | SYM |     |   |     | NUM |     |
       //             `-----------------'   `-----------------'
@@ -110,14 +117,14 @@
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
       // |     |     |     |     |     |   |     |     |     |    DQT    |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
-      // |    UNDO COPY  PASTE TERM    |   | SCREENSHOT|     |     |     |
+      // |    UNDO COPY  PASTE TERM    |   | SCREENSHOT|     |    RCLK   |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
       //             |     |     |     |   |     |     |     |
       //             `-----------------'   `-----------------'
       bindings = <
         &kp Q        &kp W      &kp E      &kp R            &kp T                &kp Y     &kp U            &kp I         &kp O       &kp P
         &hm LSHIFT A &hm LALT S &hm LGUI D &fm NAV_LAY F    &kp G                &kp H     &fm BTH_LAY J    &hm RGUI K    &hm RCTRL L &hm RSHIFT SEMI
-        &kp Z        &kp X      &kp C      &kp V            &kp B                &kp N     &kp M            &kp COMMA     &kp DOT     &kp FSLH
+        &kp Z        &kp X      &kp C      &kp V            &kp B                &kp N     &kp M            &kp COMMA     &kp DOT     &fm MOU_LAY FSLH
                                 &trans     &mo SYM_LAY      &kp SPACE            &kp ENTER &mo NUM_LAY      &trans
       >;
     };
