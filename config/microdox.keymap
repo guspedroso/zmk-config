@@ -14,6 +14,7 @@
 #define NAV_LAY 3
 #define BTH_LAY 4
 #define MOU_LAY 5
+#define SCR_LAY 6
 
 / {
   combos {
@@ -85,6 +86,16 @@
       bindings = <&mo>, <&kp>;
     };
 
+    mh: mouse_hold {
+      compatible = "zmk,behavior-hold-tap";
+      label = "MOUSE_HOLD";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick_tap_ms = <0>;
+      flavor = "balanced";
+      bindings = <&mo>, <&mkp>;
+    };
+
     num_td: num_tap_dance {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
@@ -131,7 +142,7 @@
       bindings = <
         &kp Q        &kp W      &kp E      &kp R            &kp T                &kp Y     &kp U            &kp I         &kp O       &kp P
         &hm LSHIFT A &hm LALT S &hm LGUI D &fm NAV_LAY F    &kp G                &kp H     &fm BTH_LAY J    &hm RGUI K    &hm RCTRL L &hm RSHIFT SEMI
-        &kp Z        &kp X      &kp C      &kp V            &kp B                &kp N     &kp M            &kp COMMA     &kp DOT     &fm MOU_LAY FSLH
+        &kp Z        &kp X      &kp C      &kp V            &kp B                &kp N     &kp M            &kp COMMA     &kp DOT     &fm SCR_LAY FSLH
                                 &trans     &mo SYM_LAY      &kp SPACE            &kp ENTER &num_td         &trans
       >;
     };
@@ -214,6 +225,25 @@
 
     mou_layer {
       // right thumb toggle.
+      // ,-----------------------------.   ,-----------------------------.
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
+      // |     |     |     |     |     |   |CMDL |CMDR |OPT+SP|RCLIC|LCLIC|
+      // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----'
+      //             |     |     |     |   |     |     |     |
+      //             `-----------------'   `-----------------'
+      bindings = <
+        &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans    &kp LG(LEFT) &kp LG(RIGHT) &kp LA(SPACE) &mkp RCLK &mh SCR_LAY LCLK
+                      &trans &trans &trans    &trans &trans &trans
+      >;
+    };
+
+    scr_layer {
+      // scroll layer (trackpad movement -> scroll).
       // ,-----------------------------.   ,-----------------------------.
       // |     |     |     |     |     |   |     |     |     |     |     |
       // |-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----|
